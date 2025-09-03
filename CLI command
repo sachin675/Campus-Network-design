@@ -1,0 +1,57 @@
+How to setup vlan in each network command -
+Int f/0-4
+Switchport mode access
+Switchport access vlan 10    #setup vlan in network
+Do wr                                       #save configuration
+Exit
+_______________________________________________________________________________________
+For setup dhcp command in router -
+Service dhcp
+Ip dhcp pool admin-pool                              admin pool is the name 
+Network 192.168.1.0 255.255.255.0          #add network id
+Default-router 192.168.1.1                         #adding gate way 
+Dns-server 192.168.1.1                               #gateway is dns srever
+Domain-name google.com                         #add domain name 
+Exit 
+Do wr
+_______________________________________________________________________________________
+For setup intervlan in router command-
+int gig0/0.10
+encapsulation dot1Q 10            #here 10 is the vlan number 
+ip address 192.168.1.1 255.255.255.0
+do wr
+exit
+_______________________________________________________________________________________
+for adding trunk to the switch command-
+int fa0/0
+switchport mode trunk     #change the mode into trunk
+do wr
+
+for layer 3 switch-
+int gig1/0/1
+switchport trunk encapsulation dot1q
+switchport mode trunk
+do wr
+_______________________________________________________________________________________
+Connect ssh in router command for remote login-
+hostname f3-router                                  #give router a name 
+ip domain-name gtech                              # add domain name where gtech is name 
+username gtech passward getech           #add username and password
+crypto key generate rsa                              # it generate crypto key where you have to write 1024 and it show 
+                                                                            shh is enable            
+line vty 0 15
+login local
+transport input ssh 
+do wr              
+#now if you want to connet router from any pc you used command 
+Ssh -l gtech 10.10.10.1                             #gtech si username name and 10.10.10.1 is router ip        
+Password:
+F2-rpoouter>                                             #this will show means connect
+Exit
+_______________________________________________________________________________________                                                                                                                                         
+Ospf setup in router-
+Router ospf 10 
+Network 10.10.10.0 255.0.0.0  area 0   #add all network same like this way which is connected to router
+Network 10.10.10.1 255.0.0.0  area 0   
+_______________________________________________________________________________________
+
